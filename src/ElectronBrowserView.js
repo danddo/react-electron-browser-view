@@ -9,10 +9,9 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import camelCase from 'lodash.camelcase'
-import { remote } from 'electron'
 import { changableProps, events, methods, props, webPreferences, resizeEvents, elementResizeEvents } from './constants'
 
-const win = remote.getCurrentWindow()
+const win = window.electron.remote.getCurrentWindow()
 
 export default class ElectronBrowserView extends Component {
   constructor (props) {
