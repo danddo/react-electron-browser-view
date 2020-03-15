@@ -34,7 +34,7 @@ export default class ElectronBrowserView extends Component {
       }
     })
 
-    this.view = new remote.BrowserView(options)
+    this.view = new window.electron.remote.BrowserView(options)
     win.addBrowserView(this.view)
     this.updateViewBounds()
     this.view.setAutoResize({
@@ -77,7 +77,7 @@ export default class ElectronBrowserView extends Component {
         this.view.webContents.on(event, (...eventArgs) => {
           const propName = camelCase(`on-${event}`)
           // console.log('Firing event: ', propName, ' has listener: ', !!this.props[propName]);
-  
+
           // Proxy events to listeners we got as props
           if (this.props[propName]) this.props[propName](...eventArgs)
         })
