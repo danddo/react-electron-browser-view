@@ -8,10 +8,12 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import {remote} from 'electron';
 import camelCase from 'lodash.camelcase'
 import { changableProps, events, methods, props, webPreferences, resizeEvents, elementResizeEvents } from './constants'
 
-const win = window.electron.remote.getCurrentWindow()
+const win = remote.getCurrentWindow();
+console.log(win);
 
 export default class ElectronBrowserView extends Component {
   constructor (props) {
@@ -34,8 +36,8 @@ export default class ElectronBrowserView extends Component {
       }
     })
 
-    this.view = new window.electron.remote.BrowserView(options)
-    win.addBrowserView(this.view)
+    this.view = new remote.BrowserView(options)
+    win.setBrowserView(this.view)
     this.updateViewBounds()
     this.view.setAutoResize({
       horizontal: true,
